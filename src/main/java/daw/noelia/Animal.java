@@ -9,5 +9,6 @@ package daw.noelia;
  * @author noelia
  */
 public class Animal {
-    
+    String fechaNacimiento;
+    String nombre;
 }
