@@ -4,21 +4,27 @@
  */
 package daw.noelia;
 
+import java.time.LocalDate;
+
 /**
  *
  * @author noelia
  */
 public class Animal {
-    private String fechaNacimiento;
+
+    // Atributos
+    private LocalDate fechaNacimiento;
     private String nombre;
     private String tipo;
     private double peso;
     private String estado;
 
+    // Constructor por defecto
     public Animal() {
     }
 
-    public Animal(String fechaNacimiento, String nombre, String tipo, double peso, String estado) {
+    // Constructor parametrizado
+    public Animal(LocalDate fechaNacimiento, String nombre, String tipo, double peso, String estado) {
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -26,6 +32,7 @@ public class Animal {
         this.estado = estado;
     }
 
+    // Getter y setter
     public String getEstado() {
         return estado;
     }
@@ -34,11 +41,11 @@ public class Animal {
         this.estado = estado;
     }
 
-    public String getFechaNacimiento() {
+    public LocalDate getFechaNacimiento() {
         return fechaNacimiento;
     }
 
-    public void setFechaNacimiento(String fechaNacimiento) {
+    public void setFechaNacimiento(LocalDate fechaNacimiento) {
         this.fechaNacimiento = fechaNacimiento;
     }
 
@@ -66,32 +73,55 @@ public class Animal {
         this.peso = peso;
     }
 
+    // To string
     @Override
     public String toString() {
         return "Animal{" + "fechaNacimiento=" + fechaNacimiento + ", nombre=" + nombre + ", tipo=" + tipo + ", peso=" + peso + ", estado=" + estado + '}';
     }
-    
-    public void comer(double cantidadGramos){
-        
-        if (this.peso < 0){
-            this.peso = Math.abs(this.peso) + cantidadGramos;
-        }else{
-            this.peso = this.peso + cantidadGramos;
-        }
-        
+
+    // Métodos
+    // Si la cantidad de gramos es negativa le doy su valor absoluto
+    public void comer(double cantidadGramos) {
+        this.peso += Math.abs(cantidadGramos);
     }
-    
-    
-    
+
+    public void dormir() {
+        this.estado = "durmiendo";
+    }
+
+    public void despertar() {
+        this.estado = "despierto";
+    }
+
+    public void descansar() {
+        this.estado = "descansando";
+    }
+
+    // Primero filtro si es un número negativo, 
+    //creo la excepción para cuando los minutos sean mas de 180
+    public void jugar(int cantidadMinutos) {
+        cantidadMinutos = Math.abs(cantidadMinutos);
+        if (cantidadMinutos > 180) {
+            throw new IllegalArgumentException(
+                    "No puede jugar más de 180 minutos, no seas animal");
+        }
+        // Si los minutos de juego son menos de 30 se restan 10 gramos al peso
+        //a partir de los 30 para arriba se irán restando de 20 en 20
+        if (cantidadMinutos < 30) {
+            this.peso -= 10;
+        } else {
+            this.peso -= 20 * (cantidadMinutos / 30);
+        }
+    }
+
+    // Método para clonar un animal, si el animal no tiene datos no se clona
+    //con el return devuelvo el nuevo animal con sus parametros
+    public static Animal clonar(Animal pet) {
+        if (pet == null) {
+            throw new NullPointerException("No existen datos del animal");
+        }
+        return new Animal(pet.getFechaNacimiento(), pet.getNombre(), pet.getTipo(),
+                pet.getPeso(), pet.getEstado());
+    }
+
 }
-
-//static Animal clonar (Animal pet){
-//Animal aux = new Animal (pet.getNombre()...)
-//}
-//return aux;
-
-//Animal nuevo = null;
-//clonar(nuevo);
-//if(pet!=null){
-//}
-//return aux;
