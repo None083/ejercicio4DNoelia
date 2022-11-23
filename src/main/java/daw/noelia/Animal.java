@@ -12,13 +12,13 @@ public class Animal {
     private String fechaNacimiento;
     private String nombre;
     private String tipo;
-    private int peso;
+    private double peso;
     private String estado;
 
     public Animal() {
     }
 
-    public Animal(String fechaNacimiento, String nombre, String tipo, int peso, String estado) {
+    public Animal(String fechaNacimiento, String nombre, String tipo, double peso, String estado) {
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -58,7 +58,7 @@ public class Animal {
         this.tipo = tipo;
     }
 
-    public int getPeso() {
+    public double getPeso() {
         return peso;
     }
 
@@ -71,8 +71,27 @@ public class Animal {
         return "Animal{" + "fechaNacimiento=" + fechaNacimiento + ", nombre=" + nombre + ", tipo=" + tipo + ", peso=" + peso + ", estado=" + estado + '}';
     }
     
-    public static void comer(double cantidadGramos){
+    public void comer(double cantidadGramos){
+        
+        if (this.peso < 0){
+            this.peso = Math.abs(this.peso) + cantidadGramos;
+        }else{
+            this.peso = this.peso + cantidadGramos;
+        }
         
     }
     
+    
+    
 }
+
+//static Animal clonar (Animal pet){
+//Animal aux = new Animal (pet.getNombre()...)
+//}
+//return aux;
+
+//Animal nuevo = null;
+//clonar(nuevo);
+//if(pet!=null){
+//}
+//return aux;
