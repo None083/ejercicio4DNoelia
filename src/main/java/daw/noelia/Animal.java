@@ -83,6 +83,7 @@ public class Animal {
     // Si la cantidad de gramos es negativa le doy su valor absoluto
     public void comer(double cantidadGramos) {
         this.peso += Math.abs(cantidadGramos);
+        this.estado = "comiendo";
     }
 
     public void dormir() {
