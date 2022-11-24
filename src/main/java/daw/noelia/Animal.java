@@ -15,16 +15,16 @@ public class Animal {
     // Atributos
     private LocalDate fechaNacimiento;
     private String nombre;
-    private String tipo;
+    private TipoAnimal tipo;
     private double peso;
-    private String estado;
+    private Estado estado;
 
     // Constructor por defecto
     public Animal() {
     }
 
     // Constructor parametrizado
-    public Animal(LocalDate fechaNacimiento, String nombre, String tipo, double peso, String estado) {
+    public Animal(LocalDate fechaNacimiento, String nombre, TipoAnimal tipo, double peso, Estado estado) {
         this.fechaNacimiento = fechaNacimiento;
         this.nombre = nombre;
         this.tipo = tipo;
@@ -33,11 +33,11 @@ public class Animal {
     }
 
     // Getter y setter
-    public String getEstado() {
+    public Estado getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(Estado estado) {
         this.estado = estado;
     }
 
@@ -57,11 +57,11 @@ public class Animal {
         this.nombre = nombre;
     }
 
-    public String getTipo() {
+    public TipoAnimal getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoAnimal tipo) {
         this.tipo = tipo;
     }
 
@@ -76,26 +76,26 @@ public class Animal {
     // To string
     @Override
     public String toString() {
-        return "Animal{" + "fechaNacimiento=" + fechaNacimiento + ", nombre=" + nombre + ", tipo=" + tipo + ", peso=" + peso + ", estado=" + estado + '}';
+        return "Animal{" + "fechaNacimiento=" + fechaNacimiento + ", nombre=" + nombre + ", tipo=" + tipo.getTipo() + ", peso=" + peso + ", estado=" + estado.getEstado() + '}';
     }
 
     // Métodos
     // Si la cantidad de gramos es negativa le doy su valor absoluto
     public void comer(double cantidadGramos) {
         this.peso += Math.abs(cantidadGramos);
-        this.estado = "comiendo";
+        this.estado = Estado.COMIENDO;
     }
 
     public void dormir() {
-        this.estado = "durmiendo";
+        this.estado = Estado.DURMIENDO;
     }
 
     public void despertar() {
-        this.estado = "despierto";
+        this.estado = Estado.DESPIERTO;
     }
 
     public void descansar() {
-        this.estado = "descansando";
+        this.estado = Estado.DESPIERTO;
     }
 
     // Primero filtro si es un número negativo, 

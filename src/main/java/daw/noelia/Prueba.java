@@ -18,9 +18,9 @@ public class Prueba {
     public static void main(String[] args) {
         
         Animal a1 = new Animal(LocalDate.of(2022, 4, 
-                8), "Monty", "perro", 19900, "despierto");
+                8), "Monty", TipoAnimal.PERRO, 19900, Estado.COMIENDO);
         Animal a2 = new Animal(LocalDate.of(2022, 11, 
-                23), "Pipo", "lagarto", 100, "durmiendo");
+                23), "Pipo", TipoAnimal.LAGARTO, 100, Estado.DURMIENDO);
         Persona p1 = new Persona ("Noelia", 30);
         Persona p2 = new Persona ("Currupepa", 56);
         
@@ -37,6 +37,8 @@ public class Prueba {
         
         p1.jugar(a1, 200);
         System.out.println("El peso de " + a1.getNombre() + " es de " + a1.getPeso());
+        
+        System.out.println(a1);
         
         
     }
